@@ -1,0 +1,5 @@
+print("hi \"IT Preneur\" Pune")
+print("hi \IT Preneur\' Pune")
+print("hi \\IT Preneur\\ Pune")
+print("hi\tIT Preneur\tPune")
+print("hi\nIT Preneur\nPune")
