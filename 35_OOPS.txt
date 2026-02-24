@@ -1167,3 +1167,380 @@ m2=Manager("Raj",50000,"Admin")
 
 m1.display()
 m2.display()
+
+
+# # polymorphism ---
+# # poly-- many
+# # morphsim -- forms 
+
+# types :
+# 1. Function Polymorphism 
+#  Method Overloading -- method same name but different paramenter 
+#  Method Overriding -- method will have same with same parameter
+
+
+# Function Polymorphism :
+
+str="Hello World"
+print(len(str)) 
+# 11
+
+print(len([1,2,3,4]))
+#4
+
+print(len((1,2,3,4,5,6,7)))
+#7
+
+
+
+
+# Operator Polymorphism
+
+# + - used for addition
+# + - used for concatenation 
+
+
+print(5+3)
+#8
+
+print("Hello "+" World")
+#concat -- Hello World
+
+
+
+# Function Overloading in Python
+# function will have same name but the parameter will be different 
+
+def add(a,b=0):
+    return a+b
+
+print(add(2,5)) # 2 parameters
+print(add(10)) #1 parameter
+
+
+def cart(*amt):
+    total=0
+    for n in amt:
+        total+=n
+    return total
+
+print(cart(10,20))
+print(cart(10,20,30,40,50))
+print(cart(10,20,100))
+
+
+def namelist(name):
+    if isinstance(name,str):
+        print("Hello ",name)
+    elif isinstance(name,list):
+        for n in name:
+            print("Hello ",n)
+
+
+namelist("Kartiki")
+namelist(["Mayur","Om","Akshay"])
+
+
+def area(a,b=None):
+    if b is None:
+        return 3.14*a*a
+    else:
+        return a*b
+    
+print("Area of circle is : ",area(5))
+print("Area of Rectangle is : ",area(5,10))
+
+
+def login(username,password=None):
+    if password is None:
+        print("Kindly Login With OTP!!! --- ",username)
+    else:
+        print("Successfully Login done with Password!!! for  ",username)
+
+login("Demo","Demo@1234")
+login("Example")
+
+
+def send_msg(message,user=None):
+    if user:
+        print("Only sending message to ",user," : ",message)
+    else:
+        print("Broadcast Message : ",message)
+
+send_msg("Hello Everyone! Good Evening!!")
+send_msg("Hello Ram","Ram")
+
+
+
+# Function Overloading 
+
+
+class Bank:
+    def interest(self):
+        print("general Interest ")
+
+class SBI(Bank):
+    def interest(self):
+        print("SBI interest is : 10% ")
+
+SBI().interest()
+
+
+
+
+class Login:
+    def access(self):
+        print("User Access!!")
+
+class Admin(Login):
+    def access(self):
+        print("It is a ADMIN Login!!!")
+
+class Manager(Login):
+    def access(self):
+        print("It is a MANAGER Login!!!")
+
+class Employee(Login):
+    def access(self):
+        print("It is a EMPLOYEE Login!!!")
+
+
+Admin().access()
+Manager().access()
+Employee().access()
+
+
+
+
+Duck Typing Polymorphism :
+is a feature given by Python where type of an object is determined by its behaviour(method) rather than its class or inheritance 
+
+Polymorphism :
+1. Necessary is inheritance : same methods will be written inside different classes 
+
+Duck Type :
+1. No Necessary for creating Inheirtnace
+2. It focus on method rather than class
+3. More Flexible 
+
+
+class Email:
+    def send(self):
+        print("Email is Sent !!! ")
+
+class SMS:
+    def send(self):
+        print("SMS Sent !!!")
+    
+def notify(message):
+    message.send()
+
+#call a function 
+notify(Email())
+notify(SMS())
+
+
+class Car:
+    def move(self):
+        print("Car is Moving!!!")
+
+class Bike:
+    def move(self):
+        print("Bike Is Moving!!!")
+
+class Buss:
+    def move(self):
+        print("Bus Is Moving!!!")
+
+class Truck:
+    def move(self):
+        print("Truck Is Moving!!!")
+
+vehicles=[Car(),Bike(),Buss(),Truck()]
+
+for v in vehicles:
+    v.move()
+
+
+
+class Teacher:
+    def work(self):
+        print("Teaching!!!")
+
+
+class Student:
+    def work(self):
+        print("Studying!!!")
+
+
+for p in (Teacher(),Student()):
+    p.work()
+
+    class File:
+    def open(self):
+        print("File is Opened!!!!")
+
+class Folder:
+    def open(self):
+        print("Folder is Opened!!!!")
+
+
+for i in (File(),Folder()):
+    i.open()
+
+
+
+class Online:
+    def pay(self):
+        print("Online Payment")
+
+class Cash:
+    def pay(self):
+        print("Cash Payment")
+
+class Card:
+    def pay(self):
+        print("Card Payment")
+
+
+for p in (Online(),Cash(),Card()):
+    p.pay()
+
+
+
+
+
+class Bus:
+    def travel(self):
+        print("I'm, travelling by BUS!!!")
+
+class Train:
+    def travel(self):
+        print("I'm, travelling by TRAIN!!!")
+
+class Plane:
+    def travel(self):
+        print("I'm, travelling by PLANE!!!")
+
+for i in (Bus(),Train(),Plane()):
+    i.travel()
+
+
+
+
+class Printer:
+    def specification(self):
+        print("Printing through Printer ")
+
+class Scanner:
+    def specification(self):
+        print("Scanning through Document ")
+
+for i in (Printer(),Scanner()):
+    i.specification()
+
+
+
+
+#Polymorphism with Inheritance 
+# Overriding Example 
+
+class Device:
+    def power(self):
+        print("Power ON ")
+
+class TV(Device):
+    def power(self):
+        print("TV is ON ")
+
+class Laptop(Device):
+    def power(self):
+        print("Laptop is ON ")
+
+TV().power()
+Laptop().power()
+
+
+
+
+class Course:
+    def duration(self):
+        print("Course Duration")
+
+class Python(Course):
+     def duration(self):
+        print("Python Course Duration is 3 months ")
+
+class Java(Course):
+     def duration(self):
+        print("Java Course Duration is 6 months ")
+
+Python().duration()
+Java().duration()
+
+
+
+
+class Transport:
+    def fuel(self):
+        print("Fuel Needed !!!")
+
+class Bike(Transport):
+    def fuel(self):
+        print("PETROL !!")
+
+class Truck(Transport):
+    def fuel(self):
+        print("DIESEL")
+
+Truck().fuel()
+Bike().fuel()
+
+
+
+class App:
+    def login(self):
+        print("Login")
+
+class BankingApp(App):
+    def login(self):
+        print("Banking APP Login")
+
+class ShoppingApp(App):
+    def login(self):
+        print("Shopping APP Login")
+
+class DigiLockerApp(App):
+    def login(self):
+        print("DigiLocker APP Login")
+
+ShoppingApp().login()
+BankingApp().login()
+DigiLockerApp().login()
+
+
+
+----------------
+Abstraction
+
+# @abstractmethod decorator 
+
+# Syntax :
+from abc import ABC,abstractmethod
+
+class ParentClass(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+    @abstractmethod
+    def add(self):
+        pass
+
+
+class Child(ParentClass):
+    def area(self):
+        print()
+
+    def add(self):
+        print()
