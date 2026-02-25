@@ -1,26 +1,30 @@
-from abc import ABC,abstractmethod
-# from packagename import Abstrct Base Class, abstractmethod
+from abc import ABC, abstractmethod
 
-class Payment(ABC):
+class Employee(ABC):
 
-    # @-- decorator 
     @abstractmethod
-    def pay(self,amount):
+    def cal_salary(self):
         pass
 
+class FullTimeEmp(Employee):
+    def __init__(self,monthly_sal):
+        self.monthly_sal=monthly_sal
 
-#child 
-class CreditCard(Payment):
-    def pay(self,amount):
-        print(f"Paid the {amount} using credit Card")
-        # {} -- interpolation
+    def cal_salary(self):
+        return self.monthly_sal
+    
 
-class UPI(Payment):
-    def pay(self,amount):
-        print(f"Paid {amount} using UPI ")
+class FreelancerEmp(Employee):
+    def __init__(self,hours,rate):
+        self.hours=hours
+        self.rate=rate
 
-c=CreditCard()
-c.pay(2000)
+    def cal_salary(self):
+        return self.hours*self.rate
+    
 
-u=UPI()
-u.pay(4000)
+e1=FullTimeEmp(50000)
+print("Full TIme Employee Has Salaary :: ",e1.cal_salary())
+
+e2=FreelancerEmp(5,1000)
+print("Freelancer Employee Has Salaary calculated :: ",e2.cal_salary())

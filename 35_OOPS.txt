@@ -1544,3 +1544,158 @@ class Child(ParentClass):
 
     def add(self):
         print()
+
+
+
+
+from abc import ABC,abstractmethod
+# from packagename import Abstrct Base Class, abstractmethod
+
+class Payment(ABC):
+
+    # @-- decorator 
+    @abstractmethod
+    def pay(self,amount):
+        pass
+
+
+#child 
+class CreditCard(Payment):
+    def pay(self,amount):
+        print(f"Paid the {amount} using credit Card")
+        # {} -- interpolation
+
+class UPI(Payment):
+    def pay(self,amount):
+        print(f"Paid {amount} using UPI ")
+
+c=CreditCard()
+c.pay(2000)
+
+u=UPI()
+u.pay(4000)
+
+
+
+
+from abc import ABC,abstractmethod
+import math
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+
+
+class Circle(Shape):
+    def __init__(self,radius):
+        self.radius=radius
+    
+    def area(self):
+        return math.pi*self.radius*self.radius
+    
+
+class Square(Shape):
+    def __init__(self,side):
+        self.side=side
+
+    def area(self):
+        return self.side*self.side
+    
+
+c=Circle(5.78)
+print("Area of Circle is :: ",c.area())
+s=Square(5)
+print("Area of Square is :: ",s.area())   
+
+
+
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+
+    @abstractmethod
+    def start(self):
+        pass
+
+    def fuel_type(self):
+        print("Vehicle can use fuel : Petrol,Diesel , Electricity")
+
+
+class Truck(Vehicle):
+    def start(self):
+        print("Truck Uses DIESEL as fuel for start!!!!")
+
+
+class Bike(Vehicle):
+    def start(self):
+        print("Bike Uses PETROL as fuel for start!!!!")
+
+
+class EBike(Vehicle):
+    def start(self):
+        print("Truck Uses Electricity as fuel for start!!!!")
+
+
+t=Truck()
+t.start()
+t.fuel_type()
+
+b=Bike()
+b.start()
+b.fuel_type()
+
+e=EBike()
+e.start()
+e.fuel_type()
+
+
+
+from abc import ABC,abstractmethod
+
+class Order(ABC):
+
+    @abstractmethod
+    def place_order(self):
+        pass
+
+class Online(Order):
+    def place_order(self):
+        print("Order Placed Online. Food Will Be delievred shortly")
+
+class DineIn(Order):
+    def place_order(self):
+        print("Order Placed in Outlet. Food Will Be delievered on table")
+
+
+o=Online()
+o.place_order()
+
+d=DineIn()
+d.place_order()
+
+
+from abc import ABC,abstractmethod
+
+class BankAccount(ABC):
+
+    @abstractmethod
+    def calculate_interest(self,amount):
+        pass
+
+class SavingAccount(BankAccount):
+    def calculate_interest(self,amount):
+        return amount*0.75
+    
+class RecurringAccount(BankAccount):
+    def calculate_interest(self,amount):
+        return amount*0.99
+    
+
+s=SavingAccount()
+print("Interest on Saving Account is :: ",s.calculate_interest(10000))
+
+
+r=RecurringAccount()
+print("Interest on Recurring Account is :: ",r.calculate_interest(10000))
