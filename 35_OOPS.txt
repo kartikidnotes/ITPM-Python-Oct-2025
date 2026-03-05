@@ -1699,3 +1699,151 @@ print("Interest on Saving Account is :: ",s.calculate_interest(10000))
 
 r=RecurringAccount()
 print("Interest on Recurring Account is :: ",r.calculate_interest(10000))
+
+
+
+from abc import ABC, abstractmethod
+
+class Employee(ABC):
+
+    @abstractmethod
+    def cal_salary(self):
+        pass
+
+class FullTimeEmp(Employee):
+    def __init__(self,monthly_sal):
+        self.monthly_sal=monthly_sal
+
+    def cal_salary(self):
+        return self.monthly_sal
+    
+
+class FreelancerEmp(Employee):
+    def __init__(self,hours,rate):
+        self.hours=hours
+        self.rate=rate
+
+    def cal_salary(self):
+        return self.hours*self.rate
+    
+
+e1=FullTimeEmp(50000)
+print("Full TIme Employee Has Salaary :: ",e1.cal_salary())
+
+e2=FreelancerEmp(5,1000)
+print("Freelancer Employee Has Salaary calculated :: ",e2.cal_salary())
+
+
+
+from abc import ABC,abstractmethod
+
+class Notification(ABC):
+
+    @abstractmethod
+    def send(self,message):
+        pass
+
+class EmailNotification(Notification):
+
+    def send(self, message):
+        print(f"Email is send : {message}")
+
+
+class SMSNotification(Notification):
+
+    def send(self, message):
+        print(f"SMS is send : {message}")
+
+
+class PushNotification(Notification):
+
+    def send(self, message):
+        print(f"Push is send : {message}")
+
+
+n1=EmailNotification()
+n1.send("Email is sent Successfully ")
+
+n2=SMSNotification()
+n2.send("Your OTP is 12345")
+
+n3=PushNotification()
+n3.send("Welcome to Portal ")
+
+
+
+from abc import ABC,abstractmethod
+
+class ATM(ABC):
+
+    @abstractmethod
+    def withdraw(self,amt):
+        pass
+
+
+class SBI_ATM(ATM):
+    def withdraw(self, amt):
+        print(f"Withdraw money from SBI ATM :: {amt}")
+
+
+class Kotak_ATM(ATM):
+      def withdraw(self, amt):
+        print(f"Withdraw money from KOTAK ATM :: {amt}")
+
+s=SBI_ATM()
+s.withdraw(20000)
+
+k=Kotak_ATM()
+k.withdraw(30000)
+
+
+
+
+# Food Delivery Order Tracking System 
+
+class Order:
+    def __init__(self,order_id,customer):
+        self.order_id=order_id
+        self.customer=customer
+        self.__status="Order Placed" #encapsulation
+    
+    def update_status(self,status):
+        self.__status=status
+
+    def get_status(self):
+        return self.__status
+    
+
+class ResturantOrder(Order):
+    def prepare_food(self):
+        self.update_status("Food is being Prepared!! ")
+        print("Resturant :: FOod is in preparation!!! ")
+
+class DelievryOrder(ResturantOrder):
+    def assign_delivery(self):
+        self.update_status("Out For Delivery !!!")
+        print("Delivery Partner Zomato :: Order Picked by It !!")
+
+    def delivery(self):
+        self.update_status("Delivered Successfully!!!")
+        print("Order Delivered Successfully!!!")
+
+
+# MAIN FUN
+def main():
+    order=DelievryOrder(100,"Ram")
+
+    print("Customer :: ",order.customer)
+    print("Initial Status by Customer while giving order :: ",order.get_status())
+
+    order.prepare_food()
+    print("Status by Resturant  :: ",order.get_status())
+
+    order.assign_delivery()
+    print("Status by Zomato  :: ",order.get_status())
+
+    order.delivery()
+    print("Final Status :: ",order.get_status())
+
+
+main()
